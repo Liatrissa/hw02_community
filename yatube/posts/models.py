@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    """Модель для хранения сообществ"""
+    verbose_name = "Group",
     title = models.CharField(max_length=200)
     """Название группы"""
     slug = models.SlugField(unique=True)
@@ -17,7 +17,7 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    """Модель для хранения постов"""
+    verbose_name = "Post"
     text = models.TextField()
     """Текст поста"""
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -30,9 +30,11 @@ class Post(models.Model):
     """Автор поста"""
     group = models.ForeignKey(
         Group,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name='posts',
         blank=True,
         null=True
     )
     """Название сообщества"""
+    class Meta:
+        ordering = ['-pub_date']
