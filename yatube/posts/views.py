@@ -9,10 +9,8 @@ def index(request):
     posts = Post.objects.all()[:POST_PAGES]
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
-    text = 'Последние обновления на сайте'
     context = {
         'title': title,
-        'text': text,
         'posts': posts,
     }
     return render(request, template, context)
