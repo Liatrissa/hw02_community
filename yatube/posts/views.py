@@ -6,9 +6,9 @@ POST_PAGES = 10
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:POST_PAGES]
+    posts = Post.objects.all()[:POST_PAGES]
     template = 'posts/index.html'
-    title = 'Yatube'
+    title = 'Последние обновления на сайте'
     text = 'Последние обновления на сайте'
     context = {
         'title': title,
@@ -23,9 +23,7 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:POST_PAGES]
     template = 'posts/group_list.html'
-    title = 'Yatube'
     context = {
-        'title': title,
         'group': group,
         'posts': posts,
     }
