@@ -20,7 +20,6 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    verbose_name = "Post"
     text = models.TextField(verbose_name="Текст поста")
     pub_date = models.DateTimeField(
         auto_now_add=True,
